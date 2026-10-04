@@ -1,0 +1,52 @@
+erDiagram
+    GROUP {
+        string id PK "UUID"
+        string name
+        number enrollment_year
+    }
+
+    STUDENT {
+        string id PK "UUID"
+        string name
+        string email
+        string group_id FK "UUID"
+    }
+
+    TEACHER {
+        string id PK "UUID"
+        string name
+        string email
+        string department
+    }
+
+    COURSE {
+        string id PK "UUID"
+        string name
+        number credits
+    }
+
+    LESSON {
+        string id PK "UUID"
+        string course_id FK "UUID"
+        string teacher_id FK "UUID"
+        string group_id FK "UUID"
+        date date
+        string topic
+    }
+
+    GRADE {
+        string id PK "UUID"
+        string student_id FK "UUID"
+        string lesson_id FK "UUID"
+        number score
+        string grade_type
+        string comment
+    }
+
+    GROUP ||--o{ STUDENT : "contains"
+    GROUP ||--o{ LESSON : "attends"
+    TEACHER }|--|{ COURSE : "teaches"
+    TEACHER ||--o{ LESSON : "conducts"
+    COURSE ||--o{ LESSON : "includes"
+    STUDENT ||--o{ GRADE : "receives"
+    LESSON ||--o{ GRADE : "results_in"
