@@ -1,0 +1,30 @@
+erDiagram
+    GROUP {
+        int id
+        string name
+    }
+    STUDENT {
+        int id
+        string name
+        int group_id
+    }
+    TEACHER {
+        int id
+        string name
+    }
+    COURSE {
+        int id
+        string name
+    }
+    LESSON {
+        int id
+        int course_id
+    }
+    GRADE {
+        int id
+        int score
+    }
+
+    GROUP ||--o{ STUDENT : has
+    TEACHER ||--o{ COURSE : has
+    STUDENT ||--o{ GRADE : has
