@@ -38,6 +38,10 @@ erDiagram
         string comment
     }
 
-    GROUP ||--o{ STUDENT : has
-    TEACHER }|--|{ COURSE : has
-    STUDENT ||--o{ GRADE : has
+    GROUP ||--o{ STUDENT : "contains"
+    GROUP ||--o{ LESSON : "attends"
+    TEACHER }|--|{ COURSE : "teaches"
+    TEACHER ||--o{ LESSON : "conducts"
+    COURSE ||--o{ LESSON : "includes"
+    STUDENT ||--o{ GRADE : "receives"
+    LESSON ||--o{ GRADE : "results_in"
