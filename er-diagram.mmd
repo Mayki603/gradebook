@@ -1,30 +1,43 @@
 erDiagram
     GROUP {
-        int id
+        string id PK "UUID"
         string name
+        number enrollment_year
     }
     STUDENT {
-        int id
+        string id PK "UUID"
         string name
-        int group_id
+        string email
+        string group_id FK "UUID"
     }
     TEACHER {
-        int id
+        string id PK "UUID"
         string name
+        string email
+        string department
     }
     COURSE {
-        int id
+        string id PK "UUID"
         string name
+        number credits
     }
     LESSON {
-        int id
-        int course_id
+        string id PK "UUID"
+        string course_id FK "UUID"
+        string teacher_id FK "UUID"
+        string group_id FK "UUID"
+        date date
+        string topic
     }
     GRADE {
-        int id
-        int score
+        string id PK "UUID"
+        string student_id FK "UUID"
+        string lesson_id FK "UUID"
+        number score
+        string grade_type
+        string comment
     }
 
     GROUP ||--o{ STUDENT : has
-    TEACHER ||--o{ COURSE : has
+    TEACHER }|--|{ COURSE : has
     STUDENT ||--o{ GRADE : has
