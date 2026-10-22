@@ -1,24 +1,40 @@
 # Вимоги та Сценарії використання
 
-## 1. EARS-вимоги
-- **REQ-1:** WHEN a TEACHER submits a new GRADE for a STUDENT, the system SHALL validate the score constraints.
+## 1. Функціональні вимоги (EARS)
+- **REQ-1:** WHEN a TEACHER submits a new GRADE for a STUDENT, the system SHALL validate the score constraints (0-100).
 - **REQ-2:** WHILE a new GRADE is successfully saved, the Email-Service SHALL trigger a notification to the STUDENT's email.
 - **REQ-3:** WHEN a STUDENT requests their academic record, the system SHALL display a list of all their associated GRADEs.
 - **REQ-4 (Непокрита):** WHERE the system detects suspicious login attempts, it SHALL temporarily lock the TEACHER's account.
 
-## 2. User Stories
-- **US-1:** As a TEACHER, I want to add grades for a lesson, so that student progress is recorded.
-- **US-2:** As a STUDENT, I want to view my grade history, so that I can track my academic performance.
-- **US-3:** As a TEACHER, I want the system to email students automatically, so that I don't have to notify them manually.
+## 2. Нефункціональні вимоги (NFR)
+- **NFR-1 (Performance):** Система SHALL забезпечувати час відгуку < 1.5 секунди при навантаженні до 1000 одночасних запитів.
+- **NFR-2 (Security):** Система SHALL використовувати алгоритм AES-256 для шифрування бази даних та JWT-токени (термін дії 1 година) для авторизації TEACHER.
+- **NFR-3 (Usability/Tech):** Веб-інтерфейс SHALL коректно відображатися на мобільних пристроях (iOS 15+, Android 10+) з використанням React.js.
 
-## 3. Gherkin-сценарії
-**Feature: Grade Management**
+## 3. Gherkin-сценарії (Складний UC: Управління оцінками)
+**Feature: Управління оцінками** (Як викладач, я хочу виставляти оцінки, щоб фіксувати успішність)
+
 ```gherkin
-Scenario: TEACHER successfully adds a grade
-  Given the TEACHER is authenticated and viewing the LESSON page
-  When the TEACHER assigns a score of "95" to a STUDENT
-  Then the system saves the GRADE
-  And the Email-Service sends a notification to the STUDENT
+# Сценарій 1: Успішне додавання оцінки (Базовий)
+Scenario: Викладач успішно додає оцінку
+  Given викладач авторизований та знаходиться на сторінці заняття
+  When викладач ставить оцінку "95" студенту
+  Then система зберігає запис GRADE
+  And Email-сервіс надсилає сповіщення студенту
+
+# Сценарій 2: Помилка валідації оцінки (Негативний)
+Scenario: Викладач намагається додати некоректну оцінку
+  Given викладач авторизований та знаходиться на сторінці заняття
+  When викладач вводить бал "150"
+  Then система відхиляє введення
+  And показує помилку "Оцінка має бути від 0 до 100"
+
+# Сценарій 3: Оновлення оцінки (Альтернативний)
+Scenario: Викладач змінює існуючу оцінку
+  Given викладач раніше вже виставив GRADE студенту
+  When викладач оновлює бал з "95" на "100"
+  Then система оновлює запис GRADE
+  And зберігає зміну в історії журналу
 ```
 
 ## 4. Use Case Діаграма (Mermaid)
@@ -49,9 +65,9 @@ flowchart LR
 ```
 
 ## 5. Матриця трасування
-| Вимога | Сценарії (User Stories) | Примітка |
-|--------|-------------------------|----------|
-| REQ-1  | US-1                    |          |
-| REQ-2  | US-1, US-3              | Зв'язок M:N |
-| REQ-3  | US-2                    |          |
-| REQ-4  | -                       | **Непокрита:** Функціонал безпеки виходить за межі MVP-версії електронного журналу та буде реалізований у наступних спринтах. |
+| Вимога (EARS) | Gherkin-сценарій | Примітка |
+|---------------|------------------|----------|
+| REQ-1  | Сценарій 1, Сценарій 2 | Валідація та успішне збереження (M:N) |
+| REQ-2  | Сценарій 1 | Зв'язок з Email-сервісом |
+| REQ-3  | - | Покривається іншим UC (View Grades) |
+| REQ-4  | - | **Непокрита:** Функціонал безпеки поза MVP. |
