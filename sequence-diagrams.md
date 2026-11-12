@@ -2,6 +2,8 @@
 
 Джерела: сценарії S1–S6 і вимоги REQ-1…REQ-7 — `use-cases.md` (Завдання 2); сутності й поля — `er-diagram.mmd` (Завдання 1).
 
+**Припущення детальнішого рівня** (не змінюють вимоги Завдання 2): A1 — список групи показує поточну оцінку за заняття (потрібно для S3); A2 — `grade_type` при створенні має значення за замовчуванням (ADR 0002, п. 5). Деталі — `spec.md` §6, ADR 0004.
+
 **Учасники.** Викладач / Студент — актори (TEACHER / STUDENT з ER); `GradebookUI` — клієнт; `GradeService` — прикладний сервіс; `LESSON`, `STUDENT`, `GRADE` — сутності ER (доступ до даних).
 
 ## S1. Викладач успішно додає валідну оцінку
@@ -18,7 +20,7 @@ sequenceDiagram
     participant S as STUDENT
     participant G as GRADE
 
-    Note over T,UI: Given: викладач авторизований, teacherId відомий із сесії
+    Note over UI,GS: Given: викладач авторизований, teacherId відомий із сесії
     T->>UI: openJournal()
     activate UI
     UI->>GS: getMyLessons(teacherId)
@@ -36,7 +38,7 @@ sequenceDiagram
     L-->>-GS: lesson (group_id)
     GS->>+S: findByGroup(group_id)
     S-->>-GS: students (id, name)
-    loop для кожного студента групи
+    loop для кожного студента групи (припущення A1)
         GS->>+G: findByStudentAndLesson(studentId, lessonId)
         G-->>-GS: поточна оцінка або порожньо
     end
@@ -61,6 +63,7 @@ sequenceDiagram
         alt бал — ціле число від 0 до 100
             GS->>+G: findByStudentAndLesson(studentId, lessonId)
             G-->>-GS: запису немає
+            Note over GS,G: grade_type — значення за замовчуванням (припущення A2)
             GS->>+G: create(studentId, lessonId, 95, null, gradeTypeDefault)
             G-->>-GS: grade (id, score = 95)
             GS-->>UI: GradeSaved(gradeId)
@@ -91,7 +94,7 @@ sequenceDiagram
     participant S as STUDENT
     participant G as GRADE
 
-    Note over T,UI: Given: викладач авторизований. Вибір заняття та студента — як у S1
+    Note over UI,GS: Given: викладач авторизований. Вибір заняття та студента — як у S1
     T->>UI: submitGrade(studentId, score)
     Note right of T: приклади score: 150, -1, 95.5
     activate UI
@@ -131,8 +134,8 @@ sequenceDiagram
     participant S as STUDENT
     participant G as GRADE
 
-    Note over T,UI: Given: викладач авторизований, студент уже має оцінку 90 за це заняття
-    Note over T,UI: Вибір заняття та студента — як у S1 (у списку групи поточна оцінка 90)
+    Note over UI,GS: Given: викладач авторизований, студент уже має оцінку 90 за це заняття
+    Note over UI,GS: Вибір заняття та студента — як у S1 (у списку групи поточна оцінка 90)
     T->>UI: submitGrade(studentId, score = 95)
     activate UI
     UI->>GS: saveGrade(teacherId, lessonId, studentId, 95, null)
@@ -175,7 +178,7 @@ sequenceDiagram
     participant S as STUDENT
     participant G as GRADE
 
-    Note over T,UI: Given: викладач авторизований
+    Note over UI,GS: Given: викладач авторизований
     T->>UI: submitGrade(studentId, score = 85)
     Note right of T: приклади: студент іншої групи, заняття іншого викладача
     activate UI
@@ -216,7 +219,7 @@ sequenceDiagram
     participant S as STUDENT
     participant G as GRADE
 
-    Note over T,UI: Given: викладач авторизований. Вибір заняття та студента — як у S1
+    Note over UI,GS: Given: викладач авторизований. Вибір заняття та студента — як у S1
     T->>UI: enterScore(studentId, score = 95)
     activate UI
     opt Викладач додає коментар (extend UC)
@@ -236,6 +239,7 @@ sequenceDiagram
     GS->>GS: validateScore(95)
     GS->>+G: findByStudentAndLesson(studentId, lessonId)
     G-->>-GS: запису немає
+    Note over GS,G: grade_type — значення за замовчуванням (припущення A2)
     GS->>+G: create(studentId, lessonId, 95, "Відмінна робота", gradeTypeDefault)
     G-->>-GS: grade (id, score = 95, comment)
     GS-->>UI: GradeSaved(gradeId)
@@ -256,7 +260,7 @@ sequenceDiagram
     participant GS as GradeService
     participant G as GRADE
 
-    Note over ST,UI: Given: студент авторизований, currentStudentId відомий із сесії
+    Note over UI,GS: Given: студент авторизований, currentStudentId відомий із сесії
     ST->>UI: openGrades(requestedStudentId)
     activate UI
     UI->>GS: getGrades(currentStudentId, requestedStudentId)
@@ -274,3 +278,23 @@ sequenceDiagram
     deactivate GS
     deactivate UI
 ```
+
+## Трасування кроків Gherkin → повідомлення діаграм
+
+| Сценарій | Крок Gherkin | Повідомлення на діаграмі |
+|----------|--------------|--------------------------|
+| S1 | обирає своє заняття та студента групи | `openJournal()`, `getMyLessons()`, `selectLesson()`, `getGroupRoster()` |
+| S1 | вводить бал "95" | `submitGrade()`, `saveGrade()`, `validateScore()` |
+| S1 | система створює запис GRADE | `findByStudentAndLesson()` → `create()` → `GradeSaved` |
+| S2 | вводить бал "150" / "-1" / "95.5" | `submitGrade()`, `saveGrade()`, `validateScore()` |
+| S2 | відхиляє збереження, показує помилку | `ValidationError("Оцінка має бути від 0 до 100")` |
+| S2 | запис GRADE не створюється і не змінюється | `GRADE` не викликається |
+| S3 | студент вже має оцінку "90" | `findByStudentAndLesson()` → `grade (score = 90)` |
+| S3 | вводить новий бал "95" | `submitGrade()`, `saveGrade()` |
+| S3 | замінює бал в наявному записі | `updateScore(gradeId, 95)` → `GradeUpdated` |
+| S4 | виставляє бал студенту / за заняття без доступу | `saveGrade()`, `findById()` (LESSON, STUDENT) |
+| S4 | відхиляє збереження з помилкою доступу | `AccessDenied("Немає доступу до цього заняття або студента")` |
+| S5 | вводить бал "95" і коментар | `enterScore()`, `enterComment()` у фрагменті `opt` |
+| S5 | створює запис GRADE з коментарем | `create(…, "Відмінна робота", …)` → `GradeSaved` |
+| S6 | відкриває оцінки іншого студента | `openGrades(requestedStudentId)`, `getGrades()` |
+| S6 | відповідає 403, оцінки не повертаються | `Forbidden(403)`, `GRADE` не викликається |
