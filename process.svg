@@ -1,0 +1,250 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="130 30 2620 1150" width="2620" height="1150" font-family="Arial, Helvetica, sans-serif" xmlns:c2pa="http://c2pa.org/manifest"><rect x="130" y="30" width="2620" height="1150" fill="white"/><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker><marker id="arrowopen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="white" stroke="#222" stroke-width="1"/></marker><marker id="dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7"><circle cx="5" cy="5" r="4" fill="white" stroke="#222" stroke-width="1.2"/></marker></defs>
+<rect x="160" y="60" width="2560" height="440" fill="white" stroke="#222" stroke-width="1.6"/>
+<rect x="160" y="60" width="30" height="440" fill="#f3f3f3" stroke="#222" stroke-width="1.6"/>
+<g transform="translate(175,280) rotate(-90)"><text text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#111">Викладач</text></g>
+<rect x="190" y="60" width="2530" height="440" fill="white" stroke="#222" stroke-width="1.6"/>
+<rect x="190" y="60" width="30" height="440" fill="#f3f3f3" stroke="#222" stroke-width="1.6"/>
+<g transform="translate(205,280) rotate(-90)"><text text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#111">Викладач</text></g>
+<rect x="160" y="560" width="2560" height="590" fill="white" stroke="#222" stroke-width="1.6"/>
+<rect x="160" y="560" width="30" height="590" fill="#f3f3f3" stroke="#222" stroke-width="1.6"/>
+<g transform="translate(175,855) rotate(-90)"><text text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#111">Електронний журнал</text></g>
+<rect x="190" y="560" width="2530" height="200" fill="white" stroke="#222" stroke-width="1.6"/>
+<rect x="190" y="560" width="30" height="200" fill="#f3f3f3" stroke="#222" stroke-width="1.6"/>
+<g transform="translate(205,660) rotate(-90)"><text text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#111">GradebookUI</text></g>
+<rect x="190" y="760" width="2530" height="390" fill="white" stroke="#222" stroke-width="1.6"/>
+<rect x="190" y="760" width="30" height="390" fill="#f3f3f3" stroke="#222" stroke-width="1.6"/>
+<g transform="translate(205,955) rotate(-90)"><text text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#111">GradeService</text></g>
+<polyline points="258,330 300,330" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="400,330 445,330" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="495,330 530,330" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="630,330 675,330" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="700,305 700,210 750,210" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="721" y="275" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="721" dy="0">так</tspan></text>
+<polyline points="725,330 885,330" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<line x1="738" y1="336" x2="744" y2="324" stroke="#222" stroke-width="1.6"/>
+<text x="805" y="319" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="805" dy="0">ні</tspan></text>
+<polyline points="850,210 910,210 910,305" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="935,330 960,330" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1060,330 1475,330" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1500,305 1500,250 1640,250 1640,312" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1500,305 1500,250 1910,250 1910,312" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1500,305 1500,250 2320,250 2320,312" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1500,305 1500,250 2520,250 2520,312" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1500,305 1500,170 1622,170" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1658,330 1722,330" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1928,330 2040,330 2040,110 470,110 470,305" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="1050" y="99" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1050" dy="0">виправити бал</tspan></text>
+<polyline points="2338,330 2392,330" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="2538,330 2592,330" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1658,170 1730,170" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1830,170 1892,170" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1028,660 1080,660" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1130,700 1130,950 1235,950" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1260,925 1260,880 1340,880" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1260,975 1260,1020 1340,1020" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1440,880 1520,880 1520,925" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1440,1020 1520,1020 1520,975" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1545,950 1615,950" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1665,950 1725,950" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="1696" y="938" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1696" dy="0">доступ є</tspan></text>
+<polyline points="1640,925 1640,678" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<line x1="1646" y1="912" x2="1634" y2="906" stroke="#222" stroke-width="1.6"/>
+<text x="1693" y="807" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1693" dy="0">немає доступу</tspan></text>
+<polyline points="1825,950 1885,950" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1935,950 2000,950" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="1969" y="938" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1969" dy="0">допустимий</tspan></text>
+<polyline points="1910,925 1910,678" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<line x1="1916" y1="912" x2="1904" y2="906" stroke="#222" stroke-width="1.6"/>
+<text x="1968" y="807" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1968" dy="0">бал некоректний</tspan></text>
+<polyline points="2100,950 2165,950" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="2190,925 2190,850 2270,850" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="2163" y="891" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="2163" dy="0">існує</tspan></text>
+<polyline points="2215,950 2270,950" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<line x1="2228" y1="956" x2="2234" y2="944" stroke="#222" stroke-width="1.6"/>
+<text x="2241" y="938" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="2241" dy="0">немає</tspan></text>
+<polyline points="2320,810 2320,678" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="2370,950 2520,950 2520,678" fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1390,815 1390,840" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="2,3" marker-end="url(#arrow)"/>
+<polyline points="1390,1080 1390,1060" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="2,3" marker-end="url(#arrow)"/>
+<polyline points="2050,1030 2050,990" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="2,3" marker-end="url(#arrow)"/>
+<polyline points="2370,850 2394,850" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="2,3" marker-end="url(#arrow)"/>
+<polyline points="2320,990 2320,1030" fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="2,3" marker-end="url(#arrow)"/>
+<polyline points="1010,370 1010,642" fill="none" stroke="#222" stroke-width="1.5" stroke-dasharray="7,5" marker-start="url(#dot)" marker-end="url(#arrowopen)"/>
+<polyline points="1640,642 1640,348" fill="none" stroke="#222" stroke-width="1.5" stroke-dasharray="7,5" marker-start="url(#dot)" marker-end="url(#arrowopen)"/>
+<polyline points="1910,642 1910,348" fill="none" stroke="#222" stroke-width="1.5" stroke-dasharray="7,5" marker-start="url(#dot)" marker-end="url(#arrowopen)"/>
+<polyline points="2320,642 2320,348" fill="none" stroke="#222" stroke-width="1.5" stroke-dasharray="7,5" marker-start="url(#dot)" marker-end="url(#arrowopen)"/>
+<polyline points="2520,642 2520,348" fill="none" stroke="#222" stroke-width="1.5" stroke-dasharray="7,5" marker-start="url(#dot)" marker-end="url(#arrowopen)"/>
+<circle cx="240" cy="330" r="18" fill="white" stroke="#222" stroke-width="2"/>
+<text x="240" y="359.25" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="240" dy="0">Викладач хоче</tspan><tspan x="240" dy="13.5">виставити оцінку</tspan></text>
+<rect x="300" y="290" width="100" height="80" rx="10" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="316" cy="301" r="4" fill="white" stroke="#222" stroke-width="1.3"/><path d="M310,312 q1,-7 6,-7 q5,0 6,7 z" fill="white" stroke="#222" stroke-width="1.3"/>
+<text x="350" y="324" font-size="11" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="350" dy="0">Обрати своє</tspan><tspan x="350" dy="14">заняття та</tspan><tspan x="350" dy="14">студента групи</tspan></text>
+<polygon points="470,305 495,330 470,355 445,330" fill="white" stroke="#222" stroke-width="2"/>
+<path d="M461,321 L479,339 M479,321 L461,339" stroke="#222" stroke-width="3.5"/>
+<rect x="530" y="290" width="100" height="80" rx="10" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="546" cy="301" r="4" fill="white" stroke="#222" stroke-width="1.3"/><path d="M540,312 q1,-7 6,-7 q5,0 6,7 z" fill="white" stroke="#222" stroke-width="1.3"/>
+<text x="580" y="338" font-size="11" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="580" dy="0">Ввести бал</tspan></text>
+<polygon points="700,305 725,330 700,355 675,330" fill="white" stroke="#222" stroke-width="2"/>
+<path d="M691,321 L709,339 M709,321 L691,339" stroke="#222" stroke-width="3.5"/>
+<text x="700" y="366" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="700" dy="0">Додати коментар?</tspan></text>
+<rect x="750" y="170" width="100" height="80" rx="10" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="766" cy="181" r="4" fill="white" stroke="#222" stroke-width="1.3"/><path d="M760,192 q1,-7 6,-7 q5,0 6,7 z" fill="white" stroke="#222" stroke-width="1.3"/>
+<text x="800" y="218" font-size="11" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="800" dy="0">Ввести коментар</tspan></text>
+<polygon points="910,305 935,330 910,355 885,330" fill="white" stroke="#222" stroke-width="2"/>
+<path d="M901,321 L919,339 M919,321 L901,339" stroke="#222" stroke-width="3.5"/>
+<rect x="960" y="290" width="100" height="80" rx="10" fill="white" stroke="#222" stroke-width="2"/>
+<rect x="969" y="301" width="16" height="11" fill="#222" stroke="#222"/><polyline points="969,301 977,307 985,301" fill="none" stroke="white" stroke-width="1.2"/>
+<text x="1010" y="331" font-size="11" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1010" dy="0">Надіслати</tspan><tspan x="1010" dy="14">оцінку</tspan></text>
+<polygon points="1500,305 1525,330 1500,355 1475,330" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="1500" cy="330" r="11" fill="none" stroke="#222" stroke-width="1.5"/><circle cx="1500" cy="330" r="8.5" fill="none" stroke="#222" stroke-width="1.5"/>
+<polygon points="1500,324.5 1505.23,328.3 1503.23,334.45 1496.77,334.45 1494.77,328.3" fill="none" stroke="#222" stroke-width="1.5"/>
+<text x="1500" y="366.25" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1500" dy="0">Очікування</tspan><tspan x="1500" dy="13.5">відповіді</tspan></text>
+<circle cx="1640" cy="330" r="18" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="1640" cy="330" r="14.5" fill="none" stroke="#222" stroke-width="1.5"/>
+<rect x="1632" y="324.5" width="16" height="11" fill="white" stroke="#222" stroke-width="1.2"/>
+<polyline points="1632,324.5 1640,331 1648,324.5" fill="none" stroke="#222" stroke-width="1.2"/>
+<text x="1704" y="302" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1704" dy="0">AccessDenied</tspan></text>
+<circle cx="1740" cy="330" r="18" fill="white" stroke="#222" stroke-width="4"/>
+<text x="1740" y="359.25" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1740" dy="0">Відмовлено в</tspan><tspan x="1740" dy="13.5">доступі</tspan></text>
+<circle cx="1910" cy="330" r="18" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="1910" cy="330" r="14.5" fill="none" stroke="#222" stroke-width="1.5"/>
+<rect x="1902" y="324.5" width="16" height="11" fill="white" stroke="#222" stroke-width="1.2"/>
+<polyline points="1902,324.5 1910,331 1918,324.5" fill="none" stroke="#222" stroke-width="1.2"/>
+<text x="1974" y="302" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1974" dy="0">ValidationError</tspan></text>
+<circle cx="2320" cy="330" r="18" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="2320" cy="330" r="14.5" fill="none" stroke="#222" stroke-width="1.5"/>
+<rect x="2312" y="324.5" width="16" height="11" fill="white" stroke="#222" stroke-width="1.2"/>
+<polyline points="2312,324.5 2320,331 2328,324.5" fill="none" stroke="#222" stroke-width="1.2"/>
+<text x="2384" y="302" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="2384" dy="0">GradeUpdated</tspan></text>
+<circle cx="2410" cy="330" r="18" fill="white" stroke="#222" stroke-width="4"/>
+<text x="2410" y="359" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="2410" dy="0">Оцінку змінено</tspan></text>
+<circle cx="2520" cy="330" r="18" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="2520" cy="330" r="14.5" fill="none" stroke="#222" stroke-width="1.5"/>
+<rect x="2512" y="324.5" width="16" height="11" fill="white" stroke="#222" stroke-width="1.2"/>
+<polyline points="2512,324.5 2520,331 2528,324.5" fill="none" stroke="#222" stroke-width="1.2"/>
+<text x="2584" y="302" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="2584" dy="0">GradeSaved</tspan></text>
+<circle cx="2610" cy="330" r="18" fill="white" stroke="#222" stroke-width="4"/>
+<text x="2610" y="359" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="2610" dy="0">Оцінку збережено</tspan></text>
+<circle cx="1640" cy="170" r="18" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="1640" cy="170" r="14.5" fill="none" stroke="#222" stroke-width="1.5"/>
+<circle cx="1640" cy="170" r="9" fill="white" stroke="#222" stroke-width="1.3"/>
+<line x1="1640" y1="170" x2="1640" y2="164" stroke="#222" stroke-width="1.3"/>
+<line x1="1640" y1="170" x2="1644" y2="172" stroke="#222" stroke-width="1.3"/>
+<text x="1640" y="127.25" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1640" dy="0">Відповіді немає</tspan><tspan x="1640" dy="13.5">10 с</tspan></text>
+<rect x="1730" y="130" width="100" height="80" rx="10" fill="white" stroke="#222" stroke-width="2"/>
+<path d="M1740,142 h9 q3,0 3,3 v2 h3 q3,0 3,3 v4 q0,3 -3,3 h-12 q-3,0 -3,-3 z" fill="white" stroke="#222" stroke-width="1.3"/>
+<text x="1780" y="171" font-size="11" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1780" dy="0">Перевірити</tspan><tspan x="1780" dy="14">журнал пізніше</tspan></text>
+<circle cx="1910" cy="170" r="18" fill="white" stroke="#222" stroke-width="4"/>
+<text x="1910" y="199.25" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1910" dy="0">Збереження не</tspan><tspan x="1910" dy="13.5">підтверджено</tspan></text>
+<circle cx="1010" cy="660" r="18" fill="white" stroke="#222" stroke-width="2"/>
+<rect x="1002" y="654.5" width="16" height="11" fill="white" stroke="#222" stroke-width="1.2"/>
+<polyline points="1002,654.5 1010,661 1018,654.5" fill="none" stroke="#222" stroke-width="1.2"/>
+<text x="1010" y="689" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1010" dy="0">submitGrade</tspan></text>
+<rect x="1080" y="620" width="100" height="80" rx="10" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="1096" cy="636" r="5" fill="white" stroke="#222" stroke-width="1.3"/>
+<line x1="1101" y1="636" x2="1104" y2="636" stroke="#222" stroke-width="1.6"/>
+<line x1="1099.54" y1="639.536" x2="1101.66" y2="641.657" stroke="#222" stroke-width="1.6"/>
+<line x1="1096" y1="641" x2="1096" y2="644" stroke="#222" stroke-width="1.6"/>
+<line x1="1092.46" y1="639.536" x2="1090.34" y2="641.657" stroke="#222" stroke-width="1.6"/>
+<line x1="1091" y1="636" x2="1088" y2="636" stroke="#222" stroke-width="1.6"/>
+<line x1="1092.46" y1="632.464" x2="1090.34" y2="630.343" stroke="#222" stroke-width="1.6"/>
+<line x1="1096" y1="631" x2="1096" y2="628" stroke="#222" stroke-width="1.6"/>
+<line x1="1099.54" y1="632.464" x2="1101.66" y2="630.343" stroke="#222" stroke-width="1.6"/>
+<text x="1130" y="661" font-size="11" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1130" dy="0">Передати запит</tspan><tspan x="1130" dy="14">сервісу оцінок</tspan></text>
+<circle cx="1640" cy="660" r="18" fill="white" stroke="#222" stroke-width="4"/>
+<rect x="1632" y="654.5" width="16" height="11" fill="#222" stroke="#222" stroke-width="1.2"/>
+<polyline points="1632,654.5 1640,661 1648,654.5" fill="none" stroke="white" stroke-width="1.2"/>
+<text x="1714" y="660" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1714" dy="0">AccessDenied</tspan></text>
+<circle cx="1910" cy="660" r="18" fill="white" stroke="#222" stroke-width="4"/>
+<rect x="1902" y="654.5" width="16" height="11" fill="#222" stroke="#222" stroke-width="1.2"/>
+<polyline points="1902,654.5 1910,661 1918,654.5" fill="none" stroke="white" stroke-width="1.2"/>
+<text x="1984" y="660" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1984" dy="0">ValidationError</tspan></text>
+<circle cx="2320" cy="660" r="18" fill="white" stroke="#222" stroke-width="4"/>
+<rect x="2312" y="654.5" width="16" height="11" fill="#222" stroke="#222" stroke-width="1.2"/>
+<polyline points="2312,654.5 2320,661 2328,654.5" fill="none" stroke="white" stroke-width="1.2"/>
+<text x="2394" y="660" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="2394" dy="0">GradeUpdated</tspan></text>
+<circle cx="2520" cy="660" r="18" fill="white" stroke="#222" stroke-width="4"/>
+<rect x="2512" y="654.5" width="16" height="11" fill="#222" stroke="#222" stroke-width="1.2"/>
+<polyline points="2512,654.5 2520,661 2528,654.5" fill="none" stroke="white" stroke-width="1.2"/>
+<text x="2594" y="660" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="2594" dy="0">GradeSaved</tspan></text>
+<polygon points="1260,925 1285,950 1260,975 1235,950" fill="white" stroke="#222" stroke-width="2"/>
+<path d="M1248,950 L1272,950 M1260,938 L1260,962" stroke="#222" stroke-width="3.5"/>
+<rect x="1340" y="840" width="100" height="80" rx="10" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="1356" cy="856" r="5" fill="white" stroke="#222" stroke-width="1.3"/>
+<line x1="1361" y1="856" x2="1364" y2="856" stroke="#222" stroke-width="1.6"/>
+<line x1="1359.54" y1="859.536" x2="1361.66" y2="861.657" stroke="#222" stroke-width="1.6"/>
+<line x1="1356" y1="861" x2="1356" y2="864" stroke="#222" stroke-width="1.6"/>
+<line x1="1352.46" y1="859.536" x2="1350.34" y2="861.657" stroke="#222" stroke-width="1.6"/>
+<line x1="1351" y1="856" x2="1348" y2="856" stroke="#222" stroke-width="1.6"/>
+<line x1="1352.46" y1="852.464" x2="1350.34" y2="850.343" stroke="#222" stroke-width="1.6"/>
+<line x1="1356" y1="851" x2="1356" y2="848" stroke="#222" stroke-width="1.6"/>
+<line x1="1359.54" y1="852.464" x2="1361.66" y2="850.343" stroke="#222" stroke-width="1.6"/>
+<text x="1390" y="881" font-size="11" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1390" dy="0">Завантажити</tspan><tspan x="1390" dy="14">заняття</tspan></text>
+<rect x="1340" y="980" width="100" height="80" rx="10" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="1356" cy="996" r="5" fill="white" stroke="#222" stroke-width="1.3"/>
+<line x1="1361" y1="996" x2="1364" y2="996" stroke="#222" stroke-width="1.6"/>
+<line x1="1359.54" y1="999.536" x2="1361.66" y2="1001.66" stroke="#222" stroke-width="1.6"/>
+<line x1="1356" y1="1001" x2="1356" y2="1004" stroke="#222" stroke-width="1.6"/>
+<line x1="1352.46" y1="999.536" x2="1350.34" y2="1001.66" stroke="#222" stroke-width="1.6"/>
+<line x1="1351" y1="996" x2="1348" y2="996" stroke="#222" stroke-width="1.6"/>
+<line x1="1352.46" y1="992.464" x2="1350.34" y2="990.343" stroke="#222" stroke-width="1.6"/>
+<line x1="1356" y1="991" x2="1356" y2="988" stroke="#222" stroke-width="1.6"/>
+<line x1="1359.54" y1="992.464" x2="1361.66" y2="990.343" stroke="#222" stroke-width="1.6"/>
+<text x="1390" y="1021" font-size="11" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1390" dy="0">Завантажити</tspan><tspan x="1390" dy="14">студента</tspan></text>
+<polygon points="1520,925 1545,950 1520,975 1495,950" fill="white" stroke="#222" stroke-width="2"/>
+<path d="M1508,950 L1532,950 M1520,938 L1520,962" stroke="#222" stroke-width="3.5"/>
+<polygon points="1640,925 1665,950 1640,975 1615,950" fill="white" stroke="#222" stroke-width="2"/>
+<path d="M1631,941 L1649,959 M1649,941 L1631,959" stroke="#222" stroke-width="3.5"/>
+<text x="1640" y="986.25" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1640" dy="0">Доступ</tspan><tspan x="1640" dy="13.5">підтверджено?</tspan></text>
+<rect x="1725" y="910" width="100" height="80" rx="10" fill="white" stroke="#222" stroke-width="2"/>
+<rect x="1734" y="920" width="16" height="12" fill="white" stroke="#222" stroke-width="1.2"/><rect x="1734" y="920" width="16" height="4" fill="#bbb" stroke="#222" stroke-width="1.2"/><line x1="1734" y1="928" x2="1750" y2="928" stroke="#222"/>
+<text x="1775" y="958" font-size="11" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1775" dy="0">Перевірити бал</tspan></text>
+<polygon points="1910,925 1935,950 1910,975 1885,950" fill="white" stroke="#222" stroke-width="2"/>
+<path d="M1901,941 L1919,959 M1919,941 L1901,959" stroke="#222" stroke-width="3.5"/>
+<text x="1910" y="986" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="1910" dy="0">Бал допустимий?</tspan></text>
+<rect x="2000" y="910" width="100" height="80" rx="10" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="2016" cy="926" r="5" fill="white" stroke="#222" stroke-width="1.3"/>
+<line x1="2021" y1="926" x2="2024" y2="926" stroke="#222" stroke-width="1.6"/>
+<line x1="2019.54" y1="929.536" x2="2021.66" y2="931.657" stroke="#222" stroke-width="1.6"/>
+<line x1="2016" y1="931" x2="2016" y2="934" stroke="#222" stroke-width="1.6"/>
+<line x1="2012.46" y1="929.536" x2="2010.34" y2="931.657" stroke="#222" stroke-width="1.6"/>
+<line x1="2011" y1="926" x2="2008" y2="926" stroke="#222" stroke-width="1.6"/>
+<line x1="2012.46" y1="922.464" x2="2010.34" y2="920.343" stroke="#222" stroke-width="1.6"/>
+<line x1="2016" y1="921" x2="2016" y2="918" stroke="#222" stroke-width="1.6"/>
+<line x1="2019.54" y1="922.464" x2="2021.66" y2="920.343" stroke="#222" stroke-width="1.6"/>
+<text x="2050" y="944" font-size="11" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="2050" dy="0">Знайти оцінку</tspan><tspan x="2050" dy="14">студента за</tspan><tspan x="2050" dy="14">заняття</tspan></text>
+<polygon points="2190,925 2215,950 2190,975 2165,950" fill="white" stroke="#222" stroke-width="2"/>
+<path d="M2181,941 L2199,959 M2199,941 L2181,959" stroke="#222" stroke-width="3.5"/>
+<text x="2190" y="986.25" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="2190" dy="0">Оцінка вже</tspan><tspan x="2190" dy="13.5">існує?</tspan></text>
+<rect x="2270" y="810" width="100" height="80" rx="10" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="2286" cy="826" r="5" fill="white" stroke="#222" stroke-width="1.3"/>
+<line x1="2291" y1="826" x2="2294" y2="826" stroke="#222" stroke-width="1.6"/>
+<line x1="2289.54" y1="829.536" x2="2291.66" y2="831.657" stroke="#222" stroke-width="1.6"/>
+<line x1="2286" y1="831" x2="2286" y2="834" stroke="#222" stroke-width="1.6"/>
+<line x1="2282.46" y1="829.536" x2="2280.34" y2="831.657" stroke="#222" stroke-width="1.6"/>
+<line x1="2281" y1="826" x2="2278" y2="826" stroke="#222" stroke-width="1.6"/>
+<line x1="2282.46" y1="822.464" x2="2280.34" y2="820.343" stroke="#222" stroke-width="1.6"/>
+<line x1="2286" y1="821" x2="2286" y2="818" stroke="#222" stroke-width="1.6"/>
+<line x1="2289.54" y1="822.464" x2="2291.66" y2="820.343" stroke="#222" stroke-width="1.6"/>
+<text x="2320" y="851" font-size="11" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="2320" dy="0">Замінити бал в</tspan><tspan x="2320" dy="14">оцінці</tspan></text>
+<rect x="2270" y="910" width="100" height="80" rx="10" fill="white" stroke="#222" stroke-width="2"/>
+<circle cx="2286" cy="926" r="5" fill="white" stroke="#222" stroke-width="1.3"/>
+<line x1="2291" y1="926" x2="2294" y2="926" stroke="#222" stroke-width="1.6"/>
+<line x1="2289.54" y1="929.536" x2="2291.66" y2="931.657" stroke="#222" stroke-width="1.6"/>
+<line x1="2286" y1="931" x2="2286" y2="934" stroke="#222" stroke-width="1.6"/>
+<line x1="2282.46" y1="929.536" x2="2280.34" y2="931.657" stroke="#222" stroke-width="1.6"/>
+<line x1="2281" y1="926" x2="2278" y2="926" stroke="#222" stroke-width="1.6"/>
+<line x1="2282.46" y1="922.464" x2="2280.34" y2="920.343" stroke="#222" stroke-width="1.6"/>
+<line x1="2286" y1="921" x2="2286" y2="918" stroke="#222" stroke-width="1.6"/>
+<line x1="2289.54" y1="922.464" x2="2291.66" y2="920.343" stroke="#222" stroke-width="1.6"/>
+<text x="2320" y="958" font-size="11" text-anchor="middle" dominant-baseline="central" fill="#111"><tspan x="2320" dy="0">Створити оцінку</tspan></text>
+<path d="M1372,765 h26 l10,10 v40 h-36 z" fill="white" stroke="#222" stroke-width="1.5"/><path d="M1398,765 v10 h10" fill="none" stroke="#222" stroke-width="1.2"/>
+<text x="1416" y="790" font-size="10" text-anchor="start" dominant-baseline="central" fill="#111"><tspan x="1416" dy="0">LESSON</tspan></text>
+<path d="M1372,1080 h26 l10,10 v40 h-36 z" fill="white" stroke="#222" stroke-width="1.5"/><path d="M1398,1080 v10 h10" fill="none" stroke="#222" stroke-width="1.2"/>
+<text x="1416" y="1105" font-size="10" text-anchor="start" dominant-baseline="central" fill="#111"><tspan x="1416" dy="0">STUDENT</tspan></text>
+<path d="M2032,1030 h26 l10,10 v40 h-36 z" fill="white" stroke="#222" stroke-width="1.5"/><path d="M2058,1030 v10 h10" fill="none" stroke="#222" stroke-width="1.2"/>
+<text x="2076" y="1055" font-size="10" text-anchor="start" dominant-baseline="central" fill="#111"><tspan x="2076" dy="0">GRADE</tspan></text>
+<path d="M2394,825 h26 l10,10 v40 h-36 z" fill="white" stroke="#222" stroke-width="1.5"/><path d="M2420,825 v10 h10" fill="none" stroke="#222" stroke-width="1.2"/>
+<text x="2438" y="850" font-size="10" text-anchor="start" dominant-baseline="central" fill="#111"><tspan x="2438" dy="0">GRADE</tspan></text>
+<path d="M2302,1030 h26 l10,10 v40 h-36 z" fill="white" stroke="#222" stroke-width="1.5"/><path d="M2328,1030 v10 h10" fill="none" stroke="#222" stroke-width="1.2"/>
+<text x="2346" y="1055" font-size="10" text-anchor="start" dominant-baseline="central" fill="#111"><tspan x="2346" dy="0">GRADE</tspan></text><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo4M2UzYmZmZi01YTE2LTQ5ZDctYjY3Yy0xOTBkOGM2NjU0ZjMAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaIXYfIFtOUNAUNb6w1445MkAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDpmNDQ1ZGI4ZC0wMzI4LTRjMWYtOTg3Zi03NWYyNzZlZDMyMWVscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoFIDuID426anWC49UcSIltQAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgga4mWsYfMq5hUU3oJVJ8+9psUXdMrm5WByxPI+9RLFsSkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaBhFVebVCG+XDCieGG/xjVgAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYILwhtl6+Mhm7wmeAZuSg2Xd5lpoz6fexXnNtw7UVYgbEZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GXSRZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjgzZTNiZmZmLTVhMTYtNDlkNy1iNjdjLTE5MGQ4YzY2NTRmMy9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjkzYWIzYzA1LTZiNDUtNGQ1Ny1iNjY1LWM3MWVkY2U4MWMzZnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCBriZaxh8yrmFRTeglUnz72mxRd0yublYHLE8j71EsWxKJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggVAaYMuCkbLX1lURro9ANrynHKteu04XwIhZrkxDwdjWiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggTiBJvUWh20oqYm3h5L1RnU2Lv2uW+J52vG+j0VueFah0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQGpBcuarS/v/3dgktIpcaAbvY5yVZTo2JmfgTEmyB5/uk1LHemqJ82EtiW5hfGl3odXDpl/8Q4sobcKNtUjxOD0=</c2pa:manifest></metadata></svg>
