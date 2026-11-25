@@ -1,6 +1,6 @@
 # Процес «Виставлення оцінки» (BPMN)
 
-Артефакт Завдання 4: `process.bpmn` (BPMN 2.0 XML), рендер — `process.svg`, `process.png` (створено з `process.bpmn`). Процес деталізує UC «Виставити оцінку» (Завдання 2). Специфікація — `spec.md` §7, ключове рішення — `adr/0005-process-form-bpmn.md`. Перевірка: `scripts/check_bpmn.py`.
+Артефакт Завдання 4: `process.bpmn` (BPMN 2.0 XML), рендер — `process.svg`, `process.png` (створено з `process.bpmn`). Процес деталізує UC «Виставити оцінку» (Завдання 2). Специфікація — `spec.md` §7, ключове рішення — `adr/0005-process-form-bpmn.md`. Перевірка: `python scripts/check_bpmn.py`.
 
 ## 1. Учасники
 
@@ -26,7 +26,7 @@ Data Objects — сутності ER: LESSON, STUDENT, GRADE. Зовнішні �
 | S_Student | Завантажити студента | service | GradeService | findById (STUDENT) | REQ-5 |
 | S_Validate | Перевірити бал | business rule | GradeService | validateScore | REQ-1 |
 | S_Find | Знайти оцінку студента за заняття | service | GradeService | findByStudentAndLesson | |
-| S_Update | Замінити бал в оцінці | service | GradeService | updateScore | REQ-4 |
+| S_Update | Замінити бал в оцінці | service | GradeService | updateGrade | REQ-4 |
 | S_Create | Створити оцінку | service | GradeService | create | REQ-2, REQ-6 |
 
 ## 3. Шлюзи
@@ -63,7 +63,15 @@ Data Objects — сутності ER: LESSON, STUDENT, GRADE. Зовнішні �
 
 ## 6. Шляхи без Gherkin-сценарію
 
-Не розглядалося.
+Усі повні шляхи моделі, яких немає серед S1–S5, обґрунтовані:
+
+| Id | Шлях | Обґрунтування |
+|----|------|---------------|
+| J1 | коментар є → доступу немає | коментар не використовується, відмова до збереження (REQ-5); еквівалент S4 (припущення A4) |
+| J2 | коментар є → бал некоректний | те саме (REQ-3); еквівалент S2 (A4) |
+| J3 | коментар є → оцінка існує | композиція S3 і S5: заміна балу разом із коментарем (REQ-4 + REQ-6, A4) |
+| J4 | відповіді немає, коментаря немає | таймер 10 с, Викладач перевіряє журнал пізніше (A3) |
+| J5 | відповіді немає, коментар є | те саме (A3) |
 
 ## 7. Для перевірки скриптом
 
@@ -153,6 +161,55 @@ Data Objects — сутності ER: LESSON, STUDENT, GRADE. Зовнішні �
       ]
     }
   },
-  "justified": []
+  "justified": [
+    {
+      "id": "J1",
+      "decisions": [
+        "F_T5",
+        "F_S9"
+      ],
+      "assumption": "A4",
+      "reason": "коментар не використовується: відмова до збереження (REQ-5), еквівалент S4"
+    },
+    {
+      "id": "J2",
+      "decisions": [
+        "F_T5",
+        "F_S8",
+        "F_S12"
+      ],
+      "assumption": "A4",
+      "reason": "коментар не використовується: відмова до збереження (REQ-3), еквівалент S2"
+    },
+    {
+      "id": "J3",
+      "decisions": [
+        "F_T5",
+        "F_S8",
+        "F_S11",
+        "F_S14"
+      ],
+      "assumption": "A4",
+      "reason": "композиція S3 і S5: заміна балу разом із коментарем (REQ-4 + REQ-6)"
+    },
+    {
+      "id": "J4",
+      "decisions": [
+        "DROP",
+        "F_T6"
+      ],
+      "assumption": "A3",
+      "reason": "відповіді немає (черга, NFR-2): таймер, Викладач перевіряє журнал пізніше"
+    },
+    {
+      "id": "J5",
+      "decisions": [
+        "DROP",
+        "F_T5"
+      ],
+      "assumption": "A3",
+      "reason": "те саме, з коментарем"
+    }
+  ]
 }
 ```
