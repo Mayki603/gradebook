@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Collaboration_1">
+    <bpmn:participant id="Participant_Teacher" name="Викладач" processRef="Process_Teacher" />
+    <bpmn:participant id="Participant_System" name="Електронний журнал" processRef="Process_System" />
+    <bpmn:messageFlow id="MF_Submit" sourceRef="T_Send" targetRef="S_Start" />
+    <bpmn:messageFlow id="MF_Denied" sourceRef="S_EndDenied" targetRef="T_CatchDenied" />
+    <bpmn:messageFlow id="MF_Invalid" sourceRef="S_EndInvalid" targetRef="T_CatchInvalid" />
+    <bpmn:messageFlow id="MF_Updated" sourceRef="S_EndUpdated" targetRef="T_CatchUpdated" />
+    <bpmn:messageFlow id="MF_Saved" sourceRef="S_EndSaved" targetRef="T_CatchSaved" />
+  </bpmn:collaboration>
+  <bpmn:message id="Message_submitGrade" name="submitGrade" />
+  <bpmn:message id="Message_GradeSaved" name="GradeSaved" />
+  <bpmn:message id="Message_GradeUpdated" name="GradeUpdated" />
+  <bpmn:message id="Message_ValidationError" name="ValidationError" />
+  <bpmn:message id="Message_AccessDenied" name="AccessDenied" />
+  <bpmn:process id="Process_Teacher" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_Process_Teacher">
+      <bpmn:lane id="Lane_Teacher" name="Викладач">
+        <bpmn:flowNodeRef>T_Start</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_Select</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_Merge1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_Score</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_GwComment</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_Comment</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_Merge2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_Send</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_Wait</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_CatchDenied</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_EndDenied</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_CatchInvalid</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_CatchUpdated</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_EndUpdated</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_CatchSaved</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_EndSaved</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_Timer</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_Manual</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_EndNoReply</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="T_Start" name="Викладач хоче виставити оцінку">
+      <bpmn:outgoing>F_T1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="T_Select" name="Обрати своє заняття та студента групи">
+      <bpmn:documentation>seq: getMyLessons, getGroupRoster; uc: Переглянути свої заняття та склад групи (include)</bpmn:documentation>
+      <bpmn:incoming>F_T1</bpmn:incoming>
+      <bpmn:outgoing>F_T2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="T_Merge1">
+      <bpmn:documentation>Злиття початку й повернення на виправлення балу</bpmn:documentation>
+      <bpmn:incoming>F_T2</bpmn:incoming>
+      <bpmn:incoming>F_T16</bpmn:incoming>
+      <bpmn:outgoing>F_T3</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="T_Score" name="Ввести бал">
+      <bpmn:documentation>req: REQ-1</bpmn:documentation>
+      <bpmn:incoming>F_T3</bpmn:incoming>
+      <bpmn:outgoing>F_T4</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="T_GwComment" name="Додати коментар?" default="F_T6">
+      <bpmn:documentation>extend UC: Додати коментар до оцінки</bpmn:documentation>
+      <bpmn:incoming>F_T4</bpmn:incoming>
+      <bpmn:outgoing>F_T5</bpmn:outgoing>
+      <bpmn:outgoing>F_T6</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="T_Comment" name="Ввести коментар">
+      <bpmn:documentation>req: REQ-6</bpmn:documentation>
+      <bpmn:incoming>F_T5</bpmn:incoming>
+      <bpmn:outgoing>F_T7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="T_Merge2">
+      <bpmn:incoming>F_T6</bpmn:incoming>
+      <bpmn:incoming>F_T7</bpmn:incoming>
+      <bpmn:outgoing>F_T8</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sendTask id="T_Send" name="Надіслати оцінку" messageRef="Message_submitGrade">
+      <bpmn:documentation>seq: submitGrade</bpmn:documentation>
+      <bpmn:incoming>F_T8</bpmn:incoming>
+      <bpmn:outgoing>F_T9</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:eventBasedGateway id="T_Wait" name="Очікування відповіді" instantiate="false" eventGatewayType="Exclusive">
+      <bpmn:documentation>Викладач чекає одне з відповідних повідомлень або таймер</bpmn:documentation>
+      <bpmn:incoming>F_T9</bpmn:incoming>
+      <bpmn:outgoing>F_T10</bpmn:outgoing>
+      <bpmn:outgoing>F_T11</bpmn:outgoing>
+      <bpmn:outgoing>F_T12</bpmn:outgoing>
+      <bpmn:outgoing>F_T13</bpmn:outgoing>
+      <bpmn:outgoing>F_T14</bpmn:outgoing>
+    </bpmn:eventBasedGateway>
+    <bpmn:intermediateCatchEvent id="T_CatchDenied" name="AccessDenied">
+      <bpmn:incoming>F_T10</bpmn:incoming>
+      <bpmn:outgoing>F_T15</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="T_CatchDenied_def" messageRef="Message_AccessDenied" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:endEvent id="T_EndDenied" name="Відмовлено в доступі">
+      <bpmn:documentation>Gherkin S4</bpmn:documentation>
+      <bpmn:incoming>F_T15</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:intermediateCatchEvent id="T_CatchInvalid" name="ValidationError">
+      <bpmn:incoming>F_T11</bpmn:incoming>
+      <bpmn:outgoing>F_T16</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="T_CatchInvalid_def" messageRef="Message_ValidationError" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:intermediateCatchEvent id="T_CatchUpdated" name="GradeUpdated">
+      <bpmn:incoming>F_T12</bpmn:incoming>
+      <bpmn:outgoing>F_T17</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="T_CatchUpdated_def" messageRef="Message_GradeUpdated" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:endEvent id="T_EndUpdated" name="Оцінку змінено">
+      <bpmn:documentation>Gherkin S3</bpmn:documentation>
+      <bpmn:incoming>F_T17</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:intermediateCatchEvent id="T_CatchSaved" name="GradeSaved">
+      <bpmn:incoming>F_T13</bpmn:incoming>
+      <bpmn:outgoing>F_T18</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="T_CatchSaved_def" messageRef="Message_GradeSaved" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:endEvent id="T_EndSaved" name="Оцінку збережено">
+      <bpmn:documentation>Gherkin S1, S5</bpmn:documentation>
+      <bpmn:incoming>F_T18</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:intermediateCatchEvent id="T_Timer" name="Відповіді немає 10 с">
+      <bpmn:incoming>F_T14</bpmn:incoming>
+      <bpmn:outgoing>F_T19</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="T_Timer_def">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:manualTask id="T_Manual" name="Перевірити журнал пізніше">
+      <bpmn:incoming>F_T19</bpmn:incoming>
+      <bpmn:outgoing>F_T20</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:endEvent id="T_EndNoReply" name="Збереження не підтверджено">
+      <bpmn:incoming>F_T20</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="F_T1" sourceRef="T_Start" targetRef="T_Select" />
+    <bpmn:sequenceFlow id="F_T2" sourceRef="T_Select" targetRef="T_Merge1" />
+    <bpmn:sequenceFlow id="F_T3" sourceRef="T_Merge1" targetRef="T_Score" />
+    <bpmn:sequenceFlow id="F_T4" sourceRef="T_Score" targetRef="T_GwComment" />
+    <bpmn:sequenceFlow id="F_T5" sourceRef="T_GwComment" targetRef="T_Comment" name="так">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">wantsComment == true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F_T6" sourceRef="T_GwComment" targetRef="T_Merge2" name="ні" />
+    <bpmn:sequenceFlow id="F_T7" sourceRef="T_Comment" targetRef="T_Merge2" />
+    <bpmn:sequenceFlow id="F_T8" sourceRef="T_Merge2" targetRef="T_Send" />
+    <bpmn:sequenceFlow id="F_T9" sourceRef="T_Send" targetRef="T_Wait" />
+    <bpmn:sequenceFlow id="F_T10" sourceRef="T_Wait" targetRef="T_CatchDenied" />
+    <bpmn:sequenceFlow id="F_T11" sourceRef="T_Wait" targetRef="T_CatchInvalid" />
+    <bpmn:sequenceFlow id="F_T12" sourceRef="T_Wait" targetRef="T_CatchUpdated" />
+    <bpmn:sequenceFlow id="F_T13" sourceRef="T_Wait" targetRef="T_CatchSaved" />
+    <bpmn:sequenceFlow id="F_T14" sourceRef="T_Wait" targetRef="T_Timer" />
+    <bpmn:sequenceFlow id="F_T15" sourceRef="T_CatchDenied" targetRef="T_EndDenied" />
+    <bpmn:sequenceFlow id="F_T16" sourceRef="T_CatchInvalid" targetRef="T_Merge1" name="виправити бал" />
+    <bpmn:sequenceFlow id="F_T17" sourceRef="T_CatchUpdated" targetRef="T_EndUpdated" />
+    <bpmn:sequenceFlow id="F_T18" sourceRef="T_CatchSaved" targetRef="T_EndSaved" />
+    <bpmn:sequenceFlow id="F_T19" sourceRef="T_Timer" targetRef="T_Manual" />
+    <bpmn:sequenceFlow id="F_T20" sourceRef="T_Manual" targetRef="T_EndNoReply" />
+  </bpmn:process>
+  <bpmn:process id="Process_System" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_Process_System">
+      <bpmn:lane id="Lane_UI" name="GradebookUI">
+        <bpmn:flowNodeRef>S_Start</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_Forward</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_EndDenied</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_EndInvalid</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_EndUpdated</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_EndSaved</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GS" name="GradeService">
+        <bpmn:flowNodeRef>S_ParSplit</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_Lesson</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_Student</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_ParJoin</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_GwAccess</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_Validate</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_GwScore</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_Find</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_GwExists</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_Update</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>S_Create</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="S_Start" name="submitGrade">
+      <bpmn:outgoing>F_S1</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="S_Start_def" messageRef="Message_submitGrade" />
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="S_Forward" name="Передати запит сервісу оцінок">
+      <bpmn:documentation>seq: saveGrade</bpmn:documentation>
+      <bpmn:incoming>F_S1</bpmn:incoming>
+      <bpmn:outgoing>F_S2</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="S_EndDenied" name="AccessDenied">
+      <bpmn:incoming>F_S9</bpmn:incoming>
+      <bpmn:messageEventDefinition id="S_EndDenied_def" messageRef="Message_AccessDenied" />
+    </bpmn:endEvent>
+    <bpmn:endEvent id="S_EndInvalid" name="ValidationError">
+      <bpmn:incoming>F_S12</bpmn:incoming>
+      <bpmn:messageEventDefinition id="S_EndInvalid_def" messageRef="Message_ValidationError" />
+    </bpmn:endEvent>
+    <bpmn:endEvent id="S_EndUpdated" name="GradeUpdated">
+      <bpmn:incoming>F_S16</bpmn:incoming>
+      <bpmn:messageEventDefinition id="S_EndUpdated_def" messageRef="Message_GradeUpdated" />
+    </bpmn:endEvent>
+    <bpmn:endEvent id="S_EndSaved" name="GradeSaved">
+      <bpmn:incoming>F_S17</bpmn:incoming>
+      <bpmn:messageEventDefinition id="S_EndSaved_def" messageRef="Message_GradeSaved" />
+    </bpmn:endEvent>
+    <bpmn:parallelGateway id="S_ParSplit">
+      <bpmn:documentation>seq: par (завантаження заняття й студента паралельно)</bpmn:documentation>
+      <bpmn:incoming>F_S2</bpmn:incoming>
+      <bpmn:outgoing>F_S3</bpmn:outgoing>
+      <bpmn:outgoing>F_S4</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:serviceTask id="S_Lesson" name="Завантажити заняття">
+      <bpmn:documentation>seq: findById; entity: LESSON</bpmn:documentation>
+      <bpmn:incoming>F_S3</bpmn:incoming>
+      <bpmn:outgoing>F_S5</bpmn:outgoing>
+      <bpmn:dataInputAssociation id="A_Lesson">
+        <bpmn:sourceRef>D_Lesson</bpmn:sourceRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="S_Student" name="Завантажити студента">
+      <bpmn:documentation>seq: findById; entity: STUDENT</bpmn:documentation>
+      <bpmn:incoming>F_S4</bpmn:incoming>
+      <bpmn:outgoing>F_S6</bpmn:outgoing>
+      <bpmn:dataInputAssociation id="A_Student">
+        <bpmn:sourceRef>D_Student</bpmn:sourceRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:parallelGateway id="S_ParJoin">
+      <bpmn:incoming>F_S5</bpmn:incoming>
+      <bpmn:incoming>F_S6</bpmn:incoming>
+      <bpmn:outgoing>F_S7</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:exclusiveGateway id="S_GwAccess" name="Доступ підтверджено?" default="F_S9">
+      <bpmn:documentation>req: REQ-5</bpmn:documentation>
+      <bpmn:incoming>F_S7</bpmn:incoming>
+      <bpmn:outgoing>F_S8</bpmn:outgoing>
+      <bpmn:outgoing>F_S9</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:businessRuleTask id="S_Validate" name="Перевірити бал">
+      <bpmn:documentation>seq: validateScore; req: REQ-1</bpmn:documentation>
+      <bpmn:incoming>F_S8</bpmn:incoming>
+      <bpmn:outgoing>F_S10</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:exclusiveGateway id="S_GwScore" name="Бал допустимий?" default="F_S12">
+      <bpmn:documentation>req: REQ-1, REQ-3</bpmn:documentation>
+      <bpmn:incoming>F_S10</bpmn:incoming>
+      <bpmn:outgoing>F_S11</bpmn:outgoing>
+      <bpmn:outgoing>F_S12</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="S_Find" name="Знайти оцінку студента за заняття">
+      <bpmn:documentation>seq: findByStudentAndLesson; entity: GRADE</bpmn:documentation>
+      <bpmn:incoming>F_S11</bpmn:incoming>
+      <bpmn:outgoing>F_S13</bpmn:outgoing>
+      <bpmn:dataInputAssociation id="A_Find">
+        <bpmn:sourceRef>D_GradeFind</bpmn:sourceRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="S_GwExists" name="Оцінка вже існує?" default="F_S15">
+      <bpmn:documentation>req: REQ-2, REQ-4</bpmn:documentation>
+      <bpmn:incoming>F_S13</bpmn:incoming>
+      <bpmn:outgoing>F_S14</bpmn:outgoing>
+      <bpmn:outgoing>F_S15</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="S_Update" name="Замінити бал в оцінці">
+      <bpmn:documentation>seq: updateScore; entity: GRADE; req: REQ-4</bpmn:documentation>
+      <bpmn:incoming>F_S14</bpmn:incoming>
+      <bpmn:outgoing>F_S16</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="A_Upd">
+        <bpmn:targetRef>D_GradeUpd</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="S_Create" name="Створити оцінку">
+      <bpmn:documentation>seq: create; entity: GRADE; req: REQ-2, REQ-6</bpmn:documentation>
+      <bpmn:incoming>F_S15</bpmn:incoming>
+      <bpmn:outgoing>F_S17</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="A_New">
+        <bpmn:targetRef>D_GradeNew</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:dataObjectReference id="D_Lesson" name="LESSON" dataObjectRef="DO_Lesson" />
+    <bpmn:dataObjectReference id="D_Student" name="STUDENT" dataObjectRef="DO_Student" />
+    <bpmn:dataObjectReference id="D_GradeFind" name="GRADE" dataObjectRef="DO_Grade" />
+    <bpmn:dataObjectReference id="D_GradeUpd" name="GRADE" dataObjectRef="DO_Grade" />
+    <bpmn:dataObjectReference id="D_GradeNew" name="GRADE" dataObjectRef="DO_Grade" />
+    <bpmn:dataObject id="DO_Lesson" name="LESSON" />
+    <bpmn:dataObject id="DO_Student" name="STUDENT" />
+    <bpmn:dataObject id="DO_Grade" name="GRADE" />
+    <bpmn:sequenceFlow id="F_S1" sourceRef="S_Start" targetRef="S_Forward" />
+    <bpmn:sequenceFlow id="F_S2" sourceRef="S_Forward" targetRef="S_ParSplit" />
+    <bpmn:sequenceFlow id="F_S3" sourceRef="S_ParSplit" targetRef="S_Lesson" />
+    <bpmn:sequenceFlow id="F_S4" sourceRef="S_ParSplit" targetRef="S_Student" />
+    <bpmn:sequenceFlow id="F_S5" sourceRef="S_Lesson" targetRef="S_ParJoin" />
+    <bpmn:sequenceFlow id="F_S6" sourceRef="S_Student" targetRef="S_ParJoin" />
+    <bpmn:sequenceFlow id="F_S7" sourceRef="S_ParJoin" targetRef="S_GwAccess" />
+    <bpmn:sequenceFlow id="F_S8" sourceRef="S_GwAccess" targetRef="S_Validate" name="доступ є">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">lesson.teacher_id == teacherId and student.group_id == lesson.group_id</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F_S9" sourceRef="S_GwAccess" targetRef="S_EndDenied" name="немає доступу" />
+    <bpmn:sequenceFlow id="F_S10" sourceRef="S_Validate" targetRef="S_GwScore" />
+    <bpmn:sequenceFlow id="F_S11" sourceRef="S_GwScore" targetRef="S_Find" name="бал допустимий">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">score is integer and score &gt;= 0 and score &lt;= 100</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F_S12" sourceRef="S_GwScore" targetRef="S_EndInvalid" name="бал некоректний" />
+    <bpmn:sequenceFlow id="F_S13" sourceRef="S_Find" targetRef="S_GwExists" />
+    <bpmn:sequenceFlow id="F_S14" sourceRef="S_GwExists" targetRef="S_Update" name="існує">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">grade != null</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F_S15" sourceRef="S_GwExists" targetRef="S_Create" name="немає" />
+    <bpmn:sequenceFlow id="F_S16" sourceRef="S_Update" targetRef="S_EndUpdated" />
+    <bpmn:sequenceFlow id="F_S17" sourceRef="S_Create" targetRef="S_EndSaved" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Participant_Teacher_di" bpmnElement="Participant_Teacher" isHorizontal="true">
+        <dc:Bounds x="160" y="60" width="2440" height="440" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Teacher_di" bpmnElement="Lane_Teacher" isHorizontal="true">
+        <dc:Bounds x="190" y="60" width="2410" height="440" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_System_di" bpmnElement="Participant_System" isHorizontal="true">
+        <dc:Bounds x="160" y="560" width="2440" height="590" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_UI_di" bpmnElement="Lane_UI" isHorizontal="true">
+        <dc:Bounds x="190" y="560" width="2410" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GS_di" bpmnElement="Lane_GS" isHorizontal="true">
+        <dc:Bounds x="190" y="760" width="2410" height="390" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_Start_di" bpmnElement="T_Start">
+        <dc:Bounds x="222" y="312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="190" y="352" width="100" height="28" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_Select_di" bpmnElement="T_Select">
+        <dc:Bounds x="300" y="290" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_Merge1_di" bpmnElement="T_Merge1" isMarkerVisible="true">
+        <dc:Bounds x="445" y="305" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_Score_di" bpmnElement="T_Score">
+        <dc:Bounds x="530" y="290" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_GwComment_di" bpmnElement="T_GwComment" isMarkerVisible="true">
+        <dc:Bounds x="675" y="305" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="650" y="359" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_Comment_di" bpmnElement="T_Comment">
+        <dc:Bounds x="750" y="170" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_Merge2_di" bpmnElement="T_Merge2" isMarkerVisible="true">
+        <dc:Bounds x="885" y="305" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_Send_di" bpmnElement="T_Send">
+        <dc:Bounds x="960" y="290" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_Wait_di" bpmnElement="T_Wait">
+        <dc:Bounds x="1475" y="305" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1450" y="359" width="100" height="28" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_CatchDenied_di" bpmnElement="T_CatchDenied">
+        <dc:Bounds x="1622" y="312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1662" y="290" width="84" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_EndDenied_di" bpmnElement="T_EndDenied">
+        <dc:Bounds x="1722" y="312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1690" y="352" width="100" height="28" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_CatchInvalid_di" bpmnElement="T_CatchInvalid">
+        <dc:Bounds x="1832" y="312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1872" y="290" width="84" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_CatchUpdated_di" bpmnElement="T_CatchUpdated">
+        <dc:Bounds x="2152" y="312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2192" y="290" width="84" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_EndUpdated_di" bpmnElement="T_EndUpdated">
+        <dc:Bounds x="2242" y="312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2210" y="352" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_CatchSaved_di" bpmnElement="T_CatchSaved">
+        <dc:Bounds x="2382" y="312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2422" y="290" width="84" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_EndSaved_di" bpmnElement="T_EndSaved">
+        <dc:Bounds x="2482" y="312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2450" y="352" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_Timer_di" bpmnElement="T_Timer">
+        <dc:Bounds x="1622" y="152" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1590" y="120" width="100" height="28" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_Manual_di" bpmnElement="T_Manual">
+        <dc:Bounds x="1730" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T_EndNoReply_di" bpmnElement="T_EndNoReply">
+        <dc:Bounds x="1892" y="152" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1860" y="192" width="100" height="28" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_Start_di" bpmnElement="S_Start">
+        <dc:Bounds x="992" y="642" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="960" y="682" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_Forward_di" bpmnElement="S_Forward">
+        <dc:Bounds x="1080" y="620" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_EndDenied_di" bpmnElement="S_EndDenied">
+        <dc:Bounds x="1622" y="642" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1590" y="682" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_EndInvalid_di" bpmnElement="S_EndInvalid">
+        <dc:Bounds x="1832" y="642" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1800" y="682" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_EndUpdated_di" bpmnElement="S_EndUpdated">
+        <dc:Bounds x="2152" y="642" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2120" y="682" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_EndSaved_di" bpmnElement="S_EndSaved">
+        <dc:Bounds x="2382" y="642" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2350" y="682" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_ParSplit_di" bpmnElement="S_ParSplit">
+        <dc:Bounds x="1235" y="925" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_Lesson_di" bpmnElement="S_Lesson">
+        <dc:Bounds x="1340" y="840" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_Student_di" bpmnElement="S_Student">
+        <dc:Bounds x="1340" y="980" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_ParJoin_di" bpmnElement="S_ParJoin">
+        <dc:Bounds x="1495" y="925" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_GwAccess_di" bpmnElement="S_GwAccess" isMarkerVisible="true">
+        <dc:Bounds x="1615" y="925" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1590" y="979" width="100" height="28" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_Validate_di" bpmnElement="S_Validate">
+        <dc:Bounds x="1695" y="910" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_GwScore_di" bpmnElement="S_GwScore" isMarkerVisible="true">
+        <dc:Bounds x="1825" y="925" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1800" y="979" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_Find_di" bpmnElement="S_Find">
+        <dc:Bounds x="1920" y="910" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_GwExists_di" bpmnElement="S_GwExists" isMarkerVisible="true">
+        <dc:Bounds x="2045" y="925" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2020" y="979" width="100" height="28" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_Update_di" bpmnElement="S_Update">
+        <dc:Bounds x="2120" y="840" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S_Create_di" bpmnElement="S_Create">
+        <dc:Bounds x="2120" y="910" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="D_Lesson_di" bpmnElement="D_Lesson">
+        <dc:Bounds x="1372" y="765" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1414" y="783" width="60" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="D_Student_di" bpmnElement="D_Student">
+        <dc:Bounds x="1372" y="1080" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1414" y="1098" width="60" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="D_GradeFind_di" bpmnElement="D_GradeFind">
+        <dc:Bounds x="1952" y="1030" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1994" y="1048" width="60" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="D_GradeUpd_di" bpmnElement="D_GradeUpd">
+        <dc:Bounds x="2244" y="855" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2286" y="873" width="60" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="D_GradeNew_di" bpmnElement="D_GradeNew">
+        <dc:Bounds x="2152" y="1030" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2194" y="1048" width="60" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="F_T1_di" bpmnElement="F_T1">
+        <di:waypoint x="258" y="330" />
+        <di:waypoint x="300" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T2_di" bpmnElement="F_T2">
+        <di:waypoint x="400" y="330" />
+        <di:waypoint x="445" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T3_di" bpmnElement="F_T3">
+        <di:waypoint x="495" y="330" />
+        <di:waypoint x="530" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T4_di" bpmnElement="F_T4">
+        <di:waypoint x="630" y="330" />
+        <di:waypoint x="675" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T5_di" bpmnElement="F_T5">
+        <di:waypoint x="700" y="305" />
+        <di:waypoint x="700" y="210" />
+        <di:waypoint x="750" y="210" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="706" y="268" width="30" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T6_di" bpmnElement="F_T6">
+        <di:waypoint x="725" y="330" />
+        <di:waypoint x="885" y="330" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="790" y="312" width="30" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T7_di" bpmnElement="F_T7">
+        <di:waypoint x="850" y="210" />
+        <di:waypoint x="910" y="210" />
+        <di:waypoint x="910" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T8_di" bpmnElement="F_T8">
+        <di:waypoint x="935" y="330" />
+        <di:waypoint x="960" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T9_di" bpmnElement="F_T9">
+        <di:waypoint x="1060" y="330" />
+        <di:waypoint x="1475" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T10_di" bpmnElement="F_T10">
+        <di:waypoint x="1500" y="305" />
+        <di:waypoint x="1500" y="250" />
+        <di:waypoint x="1640" y="250" />
+        <di:waypoint x="1640" y="312" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T11_di" bpmnElement="F_T11">
+        <di:waypoint x="1500" y="305" />
+        <di:waypoint x="1500" y="250" />
+        <di:waypoint x="1850" y="250" />
+        <di:waypoint x="1850" y="312" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T12_di" bpmnElement="F_T12">
+        <di:waypoint x="1500" y="305" />
+        <di:waypoint x="1500" y="250" />
+        <di:waypoint x="2170" y="250" />
+        <di:waypoint x="2170" y="312" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T13_di" bpmnElement="F_T13">
+        <di:waypoint x="1500" y="305" />
+        <di:waypoint x="1500" y="250" />
+        <di:waypoint x="2400" y="250" />
+        <di:waypoint x="2400" y="312" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T14_di" bpmnElement="F_T14">
+        <di:waypoint x="1500" y="305" />
+        <di:waypoint x="1500" y="170" />
+        <di:waypoint x="1622" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T15_di" bpmnElement="F_T15">
+        <di:waypoint x="1658" y="330" />
+        <di:waypoint x="1722" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T16_di" bpmnElement="F_T16">
+        <di:waypoint x="1868" y="330" />
+        <di:waypoint x="2000" y="330" />
+        <di:waypoint x="2000" y="110" />
+        <di:waypoint x="470" y="110" />
+        <di:waypoint x="470" y="305" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1000" y="92" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T17_di" bpmnElement="F_T17">
+        <di:waypoint x="2188" y="330" />
+        <di:waypoint x="2242" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T18_di" bpmnElement="F_T18">
+        <di:waypoint x="2418" y="330" />
+        <di:waypoint x="2482" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T19_di" bpmnElement="F_T19">
+        <di:waypoint x="1658" y="170" />
+        <di:waypoint x="1730" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_T20_di" bpmnElement="F_T20">
+        <di:waypoint x="1830" y="170" />
+        <di:waypoint x="1892" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S1_di" bpmnElement="F_S1">
+        <di:waypoint x="1028" y="660" />
+        <di:waypoint x="1080" y="660" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S2_di" bpmnElement="F_S2">
+        <di:waypoint x="1130" y="700" />
+        <di:waypoint x="1130" y="950" />
+        <di:waypoint x="1235" y="950" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S3_di" bpmnElement="F_S3">
+        <di:waypoint x="1260" y="925" />
+        <di:waypoint x="1260" y="880" />
+        <di:waypoint x="1340" y="880" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S4_di" bpmnElement="F_S4">
+        <di:waypoint x="1260" y="975" />
+        <di:waypoint x="1260" y="1020" />
+        <di:waypoint x="1340" y="1020" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S5_di" bpmnElement="F_S5">
+        <di:waypoint x="1440" y="880" />
+        <di:waypoint x="1520" y="880" />
+        <di:waypoint x="1520" y="925" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S6_di" bpmnElement="F_S6">
+        <di:waypoint x="1440" y="1020" />
+        <di:waypoint x="1520" y="1020" />
+        <di:waypoint x="1520" y="975" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S7_di" bpmnElement="F_S7">
+        <di:waypoint x="1545" y="950" />
+        <di:waypoint x="1615" y="950" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S8_di" bpmnElement="F_S8">
+        <di:waypoint x="1665" y="950" />
+        <di:waypoint x="1695" y="950" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1655" y="930" width="60" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S9_di" bpmnElement="F_S9">
+        <di:waypoint x="1640" y="925" />
+        <di:waypoint x="1640" y="678" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1648" y="800" width="90" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S10_di" bpmnElement="F_S10">
+        <di:waypoint x="1795" y="950" />
+        <di:waypoint x="1825" y="950" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S11_di" bpmnElement="F_S11">
+        <di:waypoint x="1875" y="950" />
+        <di:waypoint x="1920" y="950" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1862" y="930" width="90" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S12_di" bpmnElement="F_S12">
+        <di:waypoint x="1850" y="925" />
+        <di:waypoint x="1850" y="678" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1858" y="800" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S13_di" bpmnElement="F_S13">
+        <di:waypoint x="2020" y="950" />
+        <di:waypoint x="2045" y="950" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S14_di" bpmnElement="F_S14">
+        <di:waypoint x="2070" y="925" />
+        <di:waypoint x="2070" y="880" />
+        <di:waypoint x="2120" y="880" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2030" y="895" width="36" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S15_di" bpmnElement="F_S15">
+        <di:waypoint x="2095" y="950" />
+        <di:waypoint x="2120" y="950" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2090" y="953" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S16_di" bpmnElement="F_S16">
+        <di:waypoint x="2170" y="840" />
+        <di:waypoint x="2170" y="678" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F_S17_di" bpmnElement="F_S17">
+        <di:waypoint x="2220" y="950" />
+        <di:waypoint x="2400" y="950" />
+        <di:waypoint x="2400" y="678" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="A_Lesson_di" bpmnElement="A_Lesson">
+        <di:waypoint x="1390" y="815" />
+        <di:waypoint x="1390" y="840" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="A_Student_di" bpmnElement="A_Student">
+        <di:waypoint x="1390" y="1080" />
+        <di:waypoint x="1390" y="1060" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="A_Find_di" bpmnElement="A_Find">
+        <di:waypoint x="1970" y="1030" />
+        <di:waypoint x="1970" y="990" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="A_Upd_di" bpmnElement="A_Upd">
+        <di:waypoint x="2220" y="880" />
+        <di:waypoint x="2244" y="880" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="A_New_di" bpmnElement="A_New">
+        <di:waypoint x="2170" y="990" />
+        <di:waypoint x="2170" y="1030" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Submit_di" bpmnElement="MF_Submit">
+        <di:waypoint x="1010" y="370" />
+        <di:waypoint x="1010" y="642" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Denied_di" bpmnElement="MF_Denied">
+        <di:waypoint x="1640" y="642" />
+        <di:waypoint x="1640" y="348" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Invalid_di" bpmnElement="MF_Invalid">
+        <di:waypoint x="1850" y="642" />
+        <di:waypoint x="1850" y="348" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Updated_di" bpmnElement="MF_Updated">
+        <di:waypoint x="2170" y="642" />
+        <di:waypoint x="2170" y="348" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Saved_di" bpmnElement="MF_Saved">
+        <di:waypoint x="2400" y="642" />
+        <di:waypoint x="2400" y="348" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
