@@ -152,7 +152,7 @@ sequenceDiagram
     GS->>+G: findByStudentAndLesson(studentId, lessonId)
     G-->>-GS: grade (id, score = 90)
     alt запис GRADE уже існує
-        GS->>+G: updateScore(gradeId, 95)
+        GS->>+G: updateGrade(gradeId, 95, null)
         G-->>-GS: grade (id, score = 95)
         GS-->>UI: GradeUpdated(gradeId)
         UI-->>T: показує підтвердження зміни
@@ -291,7 +291,7 @@ sequenceDiagram
 | S2 | запис GRADE не створюється і не змінюється | `GRADE` не викликається |
 | S3 | студент вже має оцінку "90" | `findByStudentAndLesson()` → `grade (score = 90)` |
 | S3 | вводить новий бал "95" | `submitGrade()`, `saveGrade()` |
-| S3 | замінює бал в наявному записі | `updateScore(gradeId, 95)` → `GradeUpdated` |
+| S3 | замінює бал в наявному записі | `updateGrade(gradeId, 95, comment)` → `GradeUpdated` |
 | S4 | виставляє бал студенту / за заняття без доступу | `saveGrade()`, `findById()` (LESSON, STUDENT) |
 | S4 | відхиляє збереження з помилкою доступу | `AccessDenied("Немає доступу до цього заняття або студента")` |
 | S5 | вводить бал "95" і коментар | `enterScore()`, `enterComment()` у фрагменті `opt` |
