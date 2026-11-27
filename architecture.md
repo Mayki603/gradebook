@@ -44,13 +44,13 @@ flowchart TB
     GW -.-> GS
     GW -.-> IA
     GS -.-> LR
-    GS -.-> SR
     GS -.-> GR
-    IA -.-> TR
+    GS -.-> SR
     IA -.-> SR
+    IA -.-> TR
     LR -.-> pDb
-    SR -.-> pDb
     GR -.-> pDb
+    SR -.-> pDb
     TR -.-> pDb
 
     classDef comp fill:#eef4ff,stroke:#335,stroke-width:1.5px;
@@ -61,7 +61,7 @@ flowchart TB
 
 **Умовні позначення.** Mermaid не має вбудованих lollipop і socket, тому нотація така: кружок — інтерфейс (lollipop): суцільна лінія від кружка до постачальника (provided); пунктирна стрілка до кружка з підписом `requires` — споживач (socket); жовтий квадрат — порт, де компонент має зовнішнє з'єднання; звичайна пунктирна стрілка без підпису — залежність усередині модуля (uses). Прямокутник «system» — межа системи; сірий пунктирний прямокутник — зовнішня система.
 
-**Напрямки.** Згори донизу: клієнт → backend (шари API → Services → Data Access) → база даних. Усередині шару зліва направо: порядок задано порядком оголошення вузлів. Зовнішній Identity Provider — праворуч, поза межею системи.
+**Напрямки.** Згори донизу: клієнт → backend (шари API → Services → Data Access) → база даних. Усередині шару зліва направо: GradeService, IdentityAdapter; LessonRepository, GradeRepository, StudentRepository, TeacherRepository. Зовнішній Identity Provider — праворуч, поза межею системи.
 
 ## 2. Архітектурний варіант
 
@@ -99,13 +99,13 @@ Lollipop лише там, де є змінний постачальник або
 | `API Gateway` → `GradeService` | Gateway передає запити сервісу оцінок |
 | `API Gateway` → `IdentityAdapter` | перевірка сесії й вхід |
 | `GradeService` → `LessonRepository` | заняття (findById, findByTeacher) |
-| `GradeService` → `StudentRepository` | студенти групи (findById, findByGroup) |
 | `GradeService` → `GradeRepository` | оцінки (findByStudentAndLesson, create, updateGrade, findByStudent) |
-| `IdentityAdapter` → `TeacherRepository` | Викладач за email (A6) |
+| `GradeService` → `StudentRepository` | студенти групи (findById, findByGroup) |
 | `IdentityAdapter` → `StudentRepository` | Студент за email (A6) |
+| `IdentityAdapter` → `TeacherRepository` | Викладач за email (A6) |
 | `LessonRepository` → `pDb` | доступ до даних |
-| `StudentRepository` → `pDb` | доступ до даних |
 | `GradeRepository` → `pDb` | доступ до даних |
+| `StudentRepository` → `pDb` | доступ до даних |
 | `TeacherRepository` → `pDb` | доступ до даних |
 
 ## 6. Межа системи та зовнішні інтеграції
@@ -114,6 +114,7 @@ Lollipop лише там, де є змінний постачальник або
 - **Зовнішні інтеграції (поза межею, система залежить, але не реалізує):** `Identity Provider` — автентифікація зовнішня (ADR 0002, п. 4); UC «Увійти в систему» (Завдання 2).
 - **Явно поза моделлю:** Email-сервіс — «Поза обсягом» у Завданні 2: зовнішня система, не актор, жоден сценарій її не викликає.
 - **Черга повідомлень:** не потрібна — усі сценарії синхронні (Sequence, Завдання 3), Викладач чекає відповіді (BPMN, Завдання 4); черга з NFR-2 — це черга допуску запитів усередині API Gateway, а не брокер повідомлень.
+- **Довідкові дані:** сутності STUDENT, GROUP, TEACHER, COURSE, LESSON у сценаріях лише читаються; їх наповнення відбувається поза моделлю (припущення A7). Записує дані система лише для GRADE (`GradeRepository.create`, `updateGrade`).
 
 ## 7. Процес і архітектура: повідомлення BPMN
 
@@ -548,30 +549,30 @@ Lollipop лише там, де є змінний постачальник або
   ],
   [
    "GS",
-   "SR"
+   "GR"
   ],
   [
    "GS",
-   "GR"
+   "SR"
+  ],
+  [
+   "IA",
+   "SR"
   ],
   [
    "IA",
    "TR"
   ],
   [
-   "IA",
-   "SR"
-  ],
-  [
    "LR",
    "pDb"
   ],
   [
-   "SR",
+   "GR",
    "pDb"
   ],
   [
-   "GR",
+   "SR",
    "pDb"
   ],
   [
@@ -605,6 +606,33 @@ Lollipop лише там, де є змінний постачальник або
  "message_queue": {
   "needed": false,
   "why": "усі сценарії синхронні (Sequence, Завдання 3), Викладач чекає відповіді (BPMN, Завдання 4); черга з NFR-2 — це черга допуску запитів усередині API Gateway, а не брокер повідомлень"
- }
+ },
+ "reference_data": [
+  {
+   "entity": "STUDENT",
+   "why": "лише читається в сценаріях; наповнюється поза моделлю (адміністрування й імпорт довідкових даних), створення занять — «Поза обсягом» (Завдання 2)",
+   "assumption": "A7"
+  },
+  {
+   "entity": "GROUP",
+   "why": "лише читається в сценаріях; наповнюється поза моделлю (адміністрування й імпорт довідкових даних), створення занять — «Поза обсягом» (Завдання 2)",
+   "assumption": "A7"
+  },
+  {
+   "entity": "TEACHER",
+   "why": "лише читається в сценаріях; наповнюється поза моделлю (адміністрування й імпорт довідкових даних), створення занять — «Поза обсягом» (Завдання 2)",
+   "assumption": "A7"
+  },
+  {
+   "entity": "COURSE",
+   "why": "лише читається в сценаріях; наповнюється поза моделлю (адміністрування й імпорт довідкових даних), створення занять — «Поза обсягом» (Завдання 2)",
+   "assumption": "A7"
+  },
+  {
+   "entity": "LESSON",
+   "why": "лише читається в сценаріях; наповнюється поза моделлю (адміністрування й імпорт довідкових даних), створення занять — «Поза обсягом» (Завдання 2)",
+   "assumption": "A7"
+  }
+ ]
 }
 ```
